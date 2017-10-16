@@ -1,0 +1,9 @@
+<div class="row">
+    {% for image in images %}
+        <div class="col-sm-12 col-md-6">
+            <a href="{{ path('detail') }}" class="thumbnail">
+                <img src="/images/{{ image }}" alt="...">
+            </a>
+        </div>
+    {% endfor %}
+</div>

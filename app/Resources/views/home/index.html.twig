@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h2>Top Winter Images</h2>
+    {% include "::top-images.html.twig" with { images: winter_images } %}
+
+    <h2>Top Spring Images</h2>
+    {% include "top-images.html.twig" with { images: spring_images } %}
+
+    <h2>Top Summer Images</h2>
+    {% include "top-images.html.twig" with { images: summer_images } %}
+
+    <h2>Top Wallpaper</h2>
+    <div class="row">
+        {% for image in randomised_images %}
+            <div class="col-xs-6 col-md-3">
+                <a href="{{ path('detail') }}" class="thumbnail">
+                    <img src="/images/{{ image }}" alt="...">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
