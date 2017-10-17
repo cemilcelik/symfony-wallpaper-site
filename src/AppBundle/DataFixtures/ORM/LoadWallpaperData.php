@@ -12,17 +12,33 @@ class LoadWallpaperData extends AbstractFixture implements OrderedFixtureInterfa
 {
     public function load(ObjectManager $manager)
     {
-        $wallpaper = (new Wallpaper())
-            ->setFilename('summer-image-1.jpg')
-            ->setSlug('summer-image-1')
-            ->setHeight(1080)
-            ->setWidth(1920)
-            ->setCategory(
-                $this->getReference('category.spring')
-            )
-        ;
+        $images = [
+            'spring-image-1.jpg',
+            'spring-image-2.jpg',
+            'spring-image-3.jpg',
+            'spring-image-4.jpg',
+            'winter-image-1.jpg',
+            'winter-image-2.jpg',
+            'winter-image-3.jpg',
+            'winter-image-4.jpg',
+            'summer-image-1.jpg',
+            'summer-image-2.jpg',
+            'summer-image-3.jpg',
+            'summer-image-4.jpg',
+        ];
 
-        $manager->persist($wallpaper);
+        foreach ($images as $value) {
+            $wallpaper = (new Wallpaper())
+                ->setFilename($value)
+                ->setSlug(current(explode('.', $value)))
+                ->setHeight(1080)
+                ->setWidth(1920)
+                ->setCategory(
+                    $this->getReference('category.' . current(explode('-', $value)))
+                )
+            ;
+            $manager->persist($wallpaper);
+        }
         $manager->flush();
     }
 

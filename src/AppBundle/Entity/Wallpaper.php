@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Category;
 
 /**
  * Wallpaper
@@ -51,7 +52,7 @@ class Wallpaper
 
     /**
      * Many Wallpaper have One Category.
-     * @ORM\ManyToOne(targetEntity="Wallpaper")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
@@ -167,9 +168,9 @@ class Wallpaper
      *
      * @param string $category
      *
-     * @return Category
+     * @return Wallpaper
      */
-    public function setCategory($category)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -179,11 +180,27 @@ class Wallpaper
     /**
      * Get category
      *
-     * @return string
+     * @return Category|null
      */
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->filename;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->filename;
     }
 }
 

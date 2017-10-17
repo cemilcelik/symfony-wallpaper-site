@@ -4,3 +4,11 @@ easy_admin:
             class: AppBundle\Entity\Category
         Wallpaper:
             class: AppBundle\Entity\Wallpaper
+            list: 
+                fields:
+                    - "id"
+                    - "filename"
+                    - "slug"
+                    - { property: "width", format: "%d" }
+                    - { property: "height", format: "%d" }
+                    - { property: "image", type: "image", base_path: "/images/" }

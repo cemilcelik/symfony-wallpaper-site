@@ -11,13 +11,19 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 {
     public function load(ObjectManager $manager)
     {
-        $category = (new Category())
-            ->setName('Spring')
-        ;
-
-        $this->addReference('category.spring', $category);
-
-        $manager->persist($category);
+        $categories = [
+            'Summer',
+            'Winter',
+            'Spring',
+        ];
+        
+        foreach ($categories as $value) {
+            $category = (new Category())
+                ->setName($value)
+            ;
+            $this->addReference('category.' . strtolower($value), $category);
+            $manager->persist($category);
+        }
         $manager->flush();
     }
 
