@@ -34,11 +34,20 @@ class SetupWallpapersCommand extends Command
         $wallpapers = glob($this->rootDir . '/../web/images/*.*');
         
         foreach ($wallpapers as $wallpaper) {
+            [
+                'basename' => $filename,
+                'filename' => $slug
+            ] = pathinfo($wallpaper);
+            [
+                0 => $width,
+                1 => $height
+            ] = getimagesize($wallpaper);
+
             $wp = (new Wallpaper())
-                ->setFilename($wallpaper)
-                ->setSlug($wallpaper)
-                ->setHeight(1080)
-                ->setWidth(1920);
+                ->setFilename($filename)
+                ->setSlug($slug)
+                ->setHeight($height)
+                ->setWidth($width);
             
             $this->em->persist($wp);
         }
