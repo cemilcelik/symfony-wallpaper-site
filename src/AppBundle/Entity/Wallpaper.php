@@ -49,6 +49,12 @@ class Wallpaper
      */
     private $width;
 
+    /**
+     * Many Wallpaper have One Category.
+     * @ORM\ManyToOne(targetEntity="Wallpaper")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
 
     /**
      * Get id
@@ -154,6 +160,30 @@ class Wallpaper
     public function getWidth()
     {
         return $this->width;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     *
+     * @return Category
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }
 
