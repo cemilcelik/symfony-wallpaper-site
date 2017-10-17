@@ -1,0 +1,6 @@
+easy_admin:
+    entities:
+        Category:
+            class: AppBundle\Entity\Category
+        Wallpaper:
+            class: AppBundle\Entity\Wallpaper
